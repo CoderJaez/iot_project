@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const EncryptKey = require("../utils/encryptKey");
-const hardwareItemSchema = mongoose.Schema({
+const hardwareModuleSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, "Name is required."],
-    unique: true,
+    unique: [true, "Name must be unique."],
   },
   assigned_cage: {
     type: String,
@@ -20,5 +20,5 @@ const hardwareItemSchema = mongoose.Schema({
   },
 });
 
-exports.HardwareItem = mongoose.model("HardwareItem", hardwareItemSchema);
-exports.hardwareItemSchema = hardwareItemSchema;
+exports.HardwareModule = mongoose.model("HardwareModule", hardwareModuleSchema);
+exports.hardwareModuleSchema = hardwareModuleSchema;

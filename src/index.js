@@ -11,10 +11,10 @@ app.use(express.json());
 app.use(cors());
 app.options("*", cors());
 //Routers
-const hwItemRoutes = require("./routes/hardwareItems");
+const hwModules = require("./routes/hardwareModules");
 
 //Routes
-app.use(`${API_URL}hardwares`, hwItemRoutes);
+app.use(`${API_URL}hardwares`, hwModules);
 
 //Middleware
 app.use(errorHandler);
