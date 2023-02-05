@@ -47,4 +47,39 @@ module.exports = {
       .status(200)
       .json({ success: true, message: "Hardware module successfully updated" });
   }),
+  deleteHardwareModule: TryCatch(async (req, res) => {
+    const { id } = req.params;
+    await HardwareModule.findByIdAndRemove(id)
+      .then((hardwareModule) => {
+        if (hardwareModule)
+          return res
+            .status(200)
+            .json({ success: true, message: "Hardware module deleted." });
+        else
+          return res
+            .status(404)
+            .json({ success: false, message: "Hardware module not found." });
+      })
+      .catch((err) => {
+        return res.status(500).json({ success: false, message: err.message });
+      });
+  }),
+  deleteManyHardwareModule: TryCatch(async (req, res) => {
+    const { ids } = req.body;
+    let deletedHardwareModules = await Promise.all(
+      ids.map(async (id) => {
+        return HardwareModule.findByIdAndRemove(id);
+      }),
+    );
+
+    if (deletedHardwareModules)
+      return res
+        .status(200)
+        .json({ success: true, message: "Hardware module deleted." });
+    else
+      return res.status(404).json({
+        success: false,
+        message: "Hardware module not found.",
+      });
+  }),
 };
