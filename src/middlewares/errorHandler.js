@@ -19,7 +19,8 @@ function errorHandler(err, req, res, next) {
   //default to 500 server error
   if (BUILD === "production")
     return res.status(500).json("Something went wrong.");
-  return res.status(500).json(err.message);
+
+  return res.status(500).json(err);
 }
 
 module.exports = errorHandler;

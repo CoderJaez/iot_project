@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const connectMongoDb = require("./configs/db");
 const errorHandler = require("./middlewares/errorHandler");
+const notFound = require("./middlewares/notFound");
 require("dotenv/config");
 const { API_URL } = process.env;
 
@@ -10,14 +11,18 @@ app.use(express.json());
 
 app.use(cors());
 app.options("*", cors());
+
 //Routers
 const hwModules = require("./routes/hardwareModules");
+const dataStreams = require("./routes/dataStreams");
 
 //Routes
 app.use(`${API_URL}hardwares`, hwModules);
+app.use(`${API_URL}data-streams`, dataStreams);
 
 //Middleware
 app.use(errorHandler);
+app.use(notFound);
 
 app.listen(3000, connectMongoDb, () => {
   //   connectMongoDb;

@@ -3,11 +3,10 @@ const { hardwareModule, HardwareModule } = require("../models/hardwareModule");
 const { default: mongoose } = require("mongoose");
 module.exports = {
   insertHardwareModule: TryCatch(async (req, res) => {
-    const { name, assigned_cage } = req.body;
+    const { name } = req.body;
 
     let hardwareModule = new HardwareModule({
       name: name,
-      assigned_cage: assigned_cage,
     });
     hardwareModule = await hardwareModule.save();
     res
@@ -31,7 +30,7 @@ module.exports = {
   }),
   putHardwareModule: TryCatch(async (req, res) => {
     const { id } = req.params;
-    const { name, assigned_cage } = req.body;
+    const { name } = req.body;
     if (!mongoose.isValidObjectId(id))
       return res.status(500).json({ success: false, message: "Invalid Id" });
     const hardwareModule = await HardwareModule.findByIdAndUpdate(id, {
