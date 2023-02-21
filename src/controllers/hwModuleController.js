@@ -9,9 +9,7 @@ module.exports = {
       name: name,
     });
     hardwareModule = await hardwareModule.save();
-    res
-      .status(200)
-      .json({ success: true, message: "New hardware module registered." });
+    res.status(200).json({ success: true, message: "New device registered." });
   }),
   getHardwareModule: TryCatch(async (req, res) => {
     const filter = req.query ? req.query : {};
@@ -25,7 +23,7 @@ module.exports = {
         name: "asc",
       });
 
-    if (!hardwareModules) throw new Error("Hardware module not found!");
+    if (!hardwareModules) throw new Error("Device not found!");
     return res.status(200).json(hardwareModules);
   }),
   putHardwareModule: TryCatch(async (req, res) => {
@@ -40,11 +38,11 @@ module.exports = {
     if (!hardwareModule)
       return res
         .status(500)
-        .json({ success: false, message: "Hardware module cannot be updated" });
+        .json({ success: false, message: "Device cannot be updated" });
 
     return res
       .status(200)
-      .json({ success: true, message: "Hardware module successfully updated" });
+      .json({ success: true, message: "Device successfully updated" });
   }),
   deleteHardwareModule: TryCatch(async (req, res) => {
     const { id } = req.params;
@@ -53,11 +51,11 @@ module.exports = {
         if (hardwareModule)
           return res
             .status(200)
-            .json({ success: true, message: "Hardware module deleted." });
+            .json({ success: true, message: "Device deleted." });
         else
           return res
             .status(404)
-            .json({ success: false, message: "Hardware module not found." });
+            .json({ success: false, message: "Device not found." });
       })
       .catch((err) => {
         return res.status(500).json({ success: false, message: err.message });
@@ -74,11 +72,11 @@ module.exports = {
     if (deletedHardwareModules)
       return res
         .status(200)
-        .json({ success: true, message: "Hardware module deleted." });
+        .json({ success: true, message: "Device deleted." });
     else
       return res.status(404).json({
         success: false,
-        message: "Hardware module not found.",
+        message: "Device not found.",
       });
   }),
 };

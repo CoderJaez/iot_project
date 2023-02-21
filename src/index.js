@@ -15,10 +15,12 @@ app.options("*", cors());
 //Routers
 const hwModules = require("./routes/hardwareModules");
 const dataStreams = require("./routes/dataStreams");
+const tempThresholds = require("./routes/tempThresholds");
 
 //Routes
-app.use(`${API_URL}hardwares`, hwModules);
+app.use(`${API_URL}devices`, hwModules);
 app.use(`${API_URL}data-streams`, dataStreams);
+app.use(`${API_URL}temp-thresholds`, tempThresholds);
 
 //Middleware
 app.use(errorHandler);

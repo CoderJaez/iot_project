@@ -20,7 +20,7 @@ function errorHandler(err, req, res, next) {
   if (BUILD === "production")
     return res.status(500).json("Something went wrong.");
 
-  return res.status(500).json(err);
+  return res.status(500).json({ message: err });
 }
 
 module.exports = errorHandler;

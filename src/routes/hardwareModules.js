@@ -13,7 +13,7 @@ router
   .get("/", getHardwareModule)
   .get("/:id", getHardwareModule)
   .put("/:id", putHardwareModule)
-  .post("/delete_hardwares", deleteManyHardwareModule)
+  .post("/delete_devices", deleteManyHardwareModule)
   .delete("/:id", deleteHardwareModule);
 
 module.exports = router;

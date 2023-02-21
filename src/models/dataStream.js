@@ -10,6 +10,13 @@ const dataStreamSchema = mongoose.Schema({
   type: {
     type: String,
     required: [true, "The {PATH} field is required"],
+    enem: {
+      values: ["sensor", "switch"],
+      message: "{VALUE} is not supported",
+    },
+  },
+  vpin: {
+    type: String,
   },
   default_value: {
     type: String,
@@ -20,7 +27,7 @@ const dataStreamSchema = mongoose.Schema({
     ref: "HardwareModule",
     required: [true, `The {PATH} field is required`],
   },
-  dateCreated: {
+  date_created: {
     type: Date,
     default: Date.now(),
   },
