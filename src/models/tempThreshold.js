@@ -17,7 +17,7 @@ const tempThresholdSchema = mongoose.Schema({
     required: [true, "The {PATH} is required."],
     enum: {
       values: ["LOW", "NORMAL", "WARNING", "CRITICAL"],
-      message: "The {VALUE} is not supported",
+      message: "VALUE} is not supported",
     },
   },
   dateCreated: {

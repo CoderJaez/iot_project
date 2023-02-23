@@ -3,19 +3,21 @@ const mongoose = require("mongoose");
 const readingSchema = mongoose.Schema({
   temperature: {
     type: Number,
-    required: [true, "The {path} value is required"],
+    required: [true, "The {PATH} value is required"],
   },
-  ammoania: {
+  ammonia: {
     type: Number,
-    required: [true, "The {path} value is required"],
+    required: [true, "The {PATH} value is required"],
   },
-  hardwareModule: {
+  device: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "HardwareModule",
-    required: [true, `The {path} is required`],
+    required: [true, `The {PATH} is required`],
   },
   dateCreated: {
     type: Date,
     default: Date.now(),
   },
 });
+
+exports.Reading = mongoose.model("Reading", readingSchema);
