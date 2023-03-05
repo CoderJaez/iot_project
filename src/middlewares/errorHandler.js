@@ -16,8 +16,11 @@ function errorHandler(err, req, res, next) {
     return res.status(401).json({ success: false, message: validationErrors });
   }
 
-  //default to 500 server error
+  if (err.name === "CastError") {
+    return res.status(500).json(err.message);
+  }
   if (BUILD === "production")
+    //default to 500 server error
     return res.status(500).json("Something went wrong.");
 
   return res.status(500).json({ message: err });
