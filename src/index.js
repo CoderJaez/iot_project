@@ -29,7 +29,7 @@ app.use(`${API_URL}temp-readings`, tempReadings);
 app.use(errorHandler);
 app.use(notFound);
 
-app.listen(3000, connectMongoDb, () => {
+app.listen(5000, connectMongoDb, () => {
   //   connectMongoDb;
   console.log(`server is running http://localhost:3000${API_URL}`);
 });
