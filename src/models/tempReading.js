@@ -20,4 +20,4 @@ const readingSchema = mongoose.Schema({
   },
 });
 
-exports.Reading = mongoose.model("Reading", readingSchema);
+exports.TempReading = mongoose.model("TempReading", readingSchema);
